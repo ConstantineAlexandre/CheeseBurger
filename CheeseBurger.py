@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 import os
 import time
@@ -38,7 +39,7 @@ def capture_screenshot(url, output_path):
 def is_subdomain_active(url):
     try:
         response = requests.get(url, timeout=5)
-        return response.status_code == 200
+        return response.status_code in [200]  # Check for status code 200,301,404
     except requests.RequestException:
         return False
 
@@ -87,7 +88,7 @@ def process_subdomains(file_path, screenshot_folder, protocol, juicy_files):
             bar = Fore.GREEN + '█' * filled_length + '-' * (bar_length - filled_length)  # Bar colored green
             
             # Display loading bar
-            print(f'\r|{bar}| {percent:.2f}% Complete', end='')
+            print(f'\r|{bar}| {percent:.2f}% Complete ', end='')
 
         print()  # Move to a new line after loading is complete
         print(Fore.GREEN + "Process complete!")  # Completion message
@@ -108,8 +109,7 @@ if __name__ == "__main__":
     # Check if any arguments are given
     if len(sys.argv) < 2:
         print(Fore.RED + "[No parameters given.]")
-        print(Fore.YELLOW + "Usage of CheeseBurg3r:")
-        print(Fore.YELLOW + "         python3 take.py --subdomain=<file_subdomains.txt> --screenshot=<folder_screenshots> --protocol=<http/https> --juicy=<file1,file2,...>")
+        print(Fore.WHITE + "Usage: CheeseBurger.py --subdomain=[file_subdomains_location.txt] --screenshot=[folder_screenshots_location] --protocol=[http/https] --juicy=[file1,file2,...]")
         sys.exit(1)
 
     # Parse arguments from command line

@@ -1,6 +1,6 @@
-# Screenshot Capture Tool
+# CheeseBurger: Subdomain Scanner and Juicy File Finder
 
-This Python script captures screenshots of web pages and specific files from subdomains. It uses Selenium for web automation and supports headless browsing to operate without a graphical interface. The tool is designed to help with web enumeration and can be especially useful for security assessments.
+CheeseBurger is a powerful tool designed for security enthusiasts and penetration testers. With CheeseBurger, users can streamline their reconnaissance process, making it easier to identify potential vulnerabilities and gather information for further security assessments.
 
 ## Features
 
@@ -22,7 +22,7 @@ You can install the necessary libraries using pip:
 
 bash
 
-Copy code
+Copy codeScreenshot Capture Tool
 
 `pip install requests selenium webdriver-manager colorama` 
 
@@ -34,7 +34,7 @@ bash
 
 Copy code
 
-`python3 take.py --subdomain=<file_subdomains.txt> --screenshot=<folder_screenshots> --protocol=<http/https> --juicy=<file1,file2,...>` 
+`CheeseBurger --subdomain=<file_subdomains.txt> --screenshot=<folder_screenshots> --protocol=<http/https> --juicy=<file1,file2 or sub-dir1, sub-dir2...>` 
 
 ### Parameters
 
@@ -49,7 +49,7 @@ bash
 
 Copy code
 
-`python3 take.py --subdomain=subdomains.txt --screenshot=screenshots --protocol=https --juicy=admin.php,login.html` 
+`CheeseBurger --subdomain=subdomains.txt --screenshot=screenshots --protocol=https --juicy=admin.php,login.html` 
 
 ## How It Works
 
@@ -78,3 +78,5 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 [Your Name](https://your-website.com)  
 Your Email
+
+## Version: 1.0.0
