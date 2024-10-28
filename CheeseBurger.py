@@ -61,18 +61,22 @@ def process_subdomains(file_path, screenshot_folder, protocol, juicy_files):
 
     try:
         for index, subdomain in enumerate(subdomains):
-            url = f"{protocol}://{subdomain}"
+            # Validate and format subdomain to ensure it has the correct protocol
+            if not subdomain.startswith("http://") and not subdomain.startswith("https://"):
+                url = f"{protocol}://{subdomain}"
+            else:
+                url = subdomain  # Use the full URL as is if protocol is already included
 
             # Check if the subdomain is active
             if is_subdomain_active(url):
                 # Screenshot the main page
-                output_path = os.path.join(screenshot_folder, f"{subdomain}.png")
+                output_path = os.path.join(screenshot_folder, f"{subdomain.replace('://', '_').replace('/', '_')}.png")
                 capture_screenshot(url, output_path)
 
                 # Enumerate and screenshot juicy files
                 for juicy_file in juicy_files:
                     juicy_url = f"{url}/{juicy_file}"
-                    juicy_output_path = os.path.join(screenshot_folder, f"{subdomain}_{juicy_file}.png")
+                    juicy_output_path = os.path.join(screenshot_folder, f"{subdomain.replace('://', '_').replace('/', '_')}_{juicy_file}.png")
                     capture_screenshot(juicy_url, juicy_output_path)
 
             else:
@@ -97,6 +101,7 @@ def process_subdomains(file_path, screenshot_folder, protocol, juicy_files):
         print(Fore.RED + "\nProcess interrupted by user.")  # Message if interrupted
     except Exception as e:
         print(Fore.RED + f"An error occurred: {e}")
+
 
 # Main program
 if __name__ == "__main__":
